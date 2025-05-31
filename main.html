@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EcoEcho</title>
+  <style>
+    :root {
+      --green: #6BA368; /* warm green */
+      --grey: #f2f2f2;
+      --dark-grey: #333;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--grey);
+      color: var(--dark-grey);
+    }
+
+    header {
+      background-color: var(--green);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      background-image: url('https://images.unsplash.com/photo-1503264116251-35a269479413?ixlib=rb-4.0.3&auto=format&fit=crop&w=1650&q=80');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    header img {
+      width: 100px;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      border-radius: 10px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+      background-color: rgba(0,0,0,0.5);
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+      background-color: rgba(0,0,0,0.4);
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border-radius: 8px;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    section img {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+
+    h2 {
+      color: var(--green);
+    }
+
+    p {
+      line-height: 1.7;
+    }
+
+    .cta {
+      display: inline-block;
+      background-color: var(--green);
+      color: white;
+      padding: 0.8rem 1.2rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .cta:hover {
+      background-color: #5c8e5a;
+    }
+
+    footer {
+      background-color: #2e2e2e;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .calculator {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .calculator input, .calculator select {
+      width: 100%;
+      padding: 0.6rem;
+      margin: 0.5rem 0 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .result {
+      margin-top: 1rem;
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: var(--green);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="logo.png" alt="EcoEcho Logo">
+    <h1>EcoEcho</h1>
+    <p>A Climate Change Website</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>🌍 What is Global Warming?</h2>
+      <p>
+        Global warming is the gradual heating of Earth’s atmosphere, oceans, and land. It is primarily driven by human activities—especially the burning of fossil fuels like coal, oil, and gas, which release carbon dioxide and other greenhouse gases into the air.
+      </p>
+      <img src="https://images.unsplash.com/photo-1571771681542-4d3c56c1f0c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Melting Ice Caps">
+    </section>
+
+    <section>
+      <h2>🔥 Why It Matters</h2>
+      <p>
+        The effects of global warming are far-reaching. Rising sea levels threaten coastal communities, while extreme weather events—such as heatwaves, wildfires, and hurricanes—become more frequent and intense.
+      </p>
+      <img src="https://images.unsplash.com/photo-1595160931785-16ed8aaef04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Forest Fire">
+    </section>
+
+    <section>
+      <h2>🌱 What Can You Do?</h2>
+      <p>
+        You can reduce your carbon footprint by conserving energy, recycling, choosing sustainable transportation, and supporting eco-friendly businesses. Educate others and support reforestation and clean energy projects.
+      </p>
+      <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Sustainable Living">
+    </section>
+
+    <section class="calculator">
+      <h2>💨 Carbon Emission Calculator</h2>
+      <label for="miles">Miles driven per week:</label>
+      <input type="number" id="miles" placeholder="e.g. 150">
+
+      <label for="electricity">Monthly electricity use (kWh):</label>
+      <input type="number" id="electricity" placeholder="e.g. 400">
+
+      <label for="diet">Diet type:</label>
+      <select id="diet">
+        <option value="high">Meat-heavy</option>
+        <option value="medium">Mixed</option>
+        <option value="low">Vegetarian/Vegan</option>
+      </select>
+
+      <button onclick="calculateCarbon()" class="cta">Calculate Emissions</button>
+
+      <div class="result" id="result"></div>
+    </section>
+
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="https://www.instagram.com/ecoecho8" target="_blank" class="cta">Follow @ecoecho8 on Instagram</a>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 EcoEcho. All rights reserved.
+  </footer>
+
+  <script>
+    function calculateCarbon() {
+      const miles = parseFloat(document.getElementById('miles').value) || 0;
+      const electricity = parseFloat(document.getElementById('electricity').value) || 0;
+      const diet = document.getElementById('diet').value;
+
+      let carbonFromDriving = miles * 0.411 * 52 / 1000; // kg CO2/week to tonnes/year
+      let carbonFromElectricity = electricity * 12 * 0.0007; // kWh * months * kg to tonnes
+      let dietFactor = diet === "high" ? 2.5 : diet === "medium" ? 1.7 : 1.0;
+
+      let total = (carbonFromDriving + carbonFromElectricity + dietFactor).toFixed(2);
+
+      document.getElementById('result').innerText = `Estimated annual emissions: ${total} tonnes of CO₂`;
+    }
+  </script>
+
+</body>
+</html>
