@@ -69,6 +69,8 @@
       width: 100%;
       border-radius: 10px;
       margin-top: 1rem;
+      max-width: 100%;
+      height: auto;
     }
 
     h2 {
@@ -172,7 +174,7 @@
         <option value="low">Vegetarian/Vegan</option>
       </select>
 
-      <button onclick="calculateCarbon()" class="cta">Calculate Emissions</button>
+      <button type="button" onclick="calculateCarbon()" class="cta">Calculate Emissions</button>
 
       <div class="result" id="result"></div>
     </section>
@@ -192,13 +194,22 @@
       const electricity = parseFloat(document.getElementById('electricity').value) || 0;
       const diet = document.getElementById('diet').value;
 
-      let carbonFromDriving = miles * 0.411 * 52 / 1000; // kg CO2/week to tonnes/year
-      let carbonFromElectricity = electricity * 12 * 0.0007; // kWh * months * kg to tonnes
-      let dietFactor = diet === "high" ? 2.5 : diet === "medium" ? 1.7 : 1.0;
+      // Driving: 0.404 kg CO₂ per mile → tonnes per year
+      let carbonFromDriving = miles * 0.404 * 52 / 1000;
+
+      // Electricity: kWh * 12 months * 0.000417 tonnes CO₂/kWh
+      let carbonFromElectricity = electricity * 12 * 0.000417;
+
+      // Diet factor (tonnes/year)
+      let dietFactor =
+        diet === "high" ? 3.3 :
+        diet === "medium" ? 2.5 :
+        1.5;
 
       let total = (carbonFromDriving + carbonFromElectricity + dietFactor).toFixed(2);
 
-      document.getElementById('result').innerText = `Estimated annual emissions: ${total} tonnes of CO₂`;
+      document.getElementById('result').innerText =
+        `Estimated annual emissions: ${total} tonnes of CO₂`;
     }
   </script>
 
